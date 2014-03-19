@@ -10,6 +10,9 @@ import java.util.Set;
  * Simple brute force implementation - generate all possible combinations and test for validity against dictionary
  */
 public class SimpleWordSetComputer implements WordSetComputer {
+
+    private static final int MINIMUM_VALID_WORD_SIZE = 2;
+
     @Override
     public Set<String> compute(String inputString) {
         Set<String> wordSet = generateAllPermutations(inputString);
@@ -35,7 +38,12 @@ public class SimpleWordSetComputer implements WordSetComputer {
     private static void permute(String prefix, String remaining, Set<String> permutations) {
         if(permutations == null || prefix == null || remaining == null) return;
         if(remaining.isEmpty()) return;
-        //recursion stopping condition - if remaining is single character, check
+
+        //generate all possible permutations for prefix as well, if it has 2 or more characters
+        if(prefix.length() >= MINIMUM_VALID_WORD_SIZE)
+            permute("", prefix, permutations);
+
+        //recursion stopping condition - if remaining is single character, add to permutation set
         if(remaining.length() == 1) {
             permutations.add(prefix + remaining);
             return;
