@@ -13,13 +13,26 @@ public class SimpleWordSetComputer implements WordSetComputer {
 
     private static final int MINIMUM_VALID_WORD_SIZE = 2;
 
+    /**
+     * Generates a set of valid words that can be formed from the characters in the input string
+     * @param inputString Input string
+     * @return The set of valid words
+     *
+     * If inputString is null or empty, returns empty set
+     */
     @Override
     public Set<String> compute(String inputString) {
+        if(inputString == null || inputString.isEmpty())
+            return new HashSet<>();
         Set<String> wordSet = generateAllPermutations(inputString);
         removeInvalidWordsFromSet(wordSet);
         return wordSet;
     }
 
+    /**
+     * Removes all invalid words from wordSet. Word validity is based on call to DictionaryUtils.isValidWord
+     * @param wordSet Set of strings. If wordSet is empty or null, returns with no changes.
+     */
     private void removeInvalidWordsFromSet(Set<String> wordSet) {
         if(wordSet == null) return;
         Iterator<String> wordSetIterator = wordSet.iterator();
@@ -29,12 +42,24 @@ public class SimpleWordSetComputer implements WordSetComputer {
         }
     }
 
+    /**
+     * Generate all possible permutations of characters in inputString, of length>=2
+     * @param inputString String containing characters for which permutations need to be computed.
+     * @return  A Set of String objects containing all possible permutations for characters in inputString
+     *          If inputString is empty or null, returns empty set
+     */
     private Set<String> generateAllPermutations(String inputString) {
         Set<String> permutations = new HashSet<>();
         permute("", inputString, permutations);
         return permutations;
     }
 
+    /**
+     * Generates all possible permutations of characters(of length>=2) in remaining, appends them to prefix and stores the strings in permutations
+     * @param prefix Prefix string for permutation
+     * @param remaining  Remaining characters for which permutations need to be generated
+     * @param permutations   Set in which permutations must be stored
+     */
     private static void permute(String prefix, String remaining, Set<String> permutations) {
         if(permutations == null || prefix == null || remaining == null) return;
         if(remaining.isEmpty()) return;
