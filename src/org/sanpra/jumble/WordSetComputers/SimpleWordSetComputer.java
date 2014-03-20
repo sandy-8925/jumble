@@ -60,7 +60,7 @@ public class SimpleWordSetComputer implements WordSetComputer {
      * @param remaining  Remaining characters for which permutations need to be generated
      * @param permutations   Set in which permutations must be stored
      */
-    private static void permute(String prefix, String remaining, Set<String> permutations) {
+    static void permute(String prefix, String remaining, Set<String> permutations) {
         if(permutations == null || prefix == null || remaining == null) return;
         if(remaining.isEmpty()) return;
 
