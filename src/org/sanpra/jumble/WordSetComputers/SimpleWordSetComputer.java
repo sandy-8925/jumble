@@ -55,7 +55,7 @@ public class SimpleWordSetComputer implements WordSetComputer {
     }
 
     /**
-     * Generates all possible permutations of characters(of length>=2) in remaining, appends them to prefix and stores the strings in permutations
+     * Generates all possible permutations(of length>=2) of characters in remaining, appends them to prefix and stores the strings in permutations
      * @param prefix Prefix string for permutation
      * @param remaining  Remaining characters for which permutations need to be generated
      * @param permutations   Set in which permutations must be stored
