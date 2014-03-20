@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * Simple brute force implementation - generate all possible combinations and test for validity against dictionary
  */
-public class SimpleWordSetComputer implements WordSetComputer {
+public final class SimpleWordSetComputer implements WordSetComputer {
 
     private static final int MINIMUM_VALID_WORD_SIZE = 2;
 
